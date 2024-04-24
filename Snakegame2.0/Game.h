@@ -27,8 +27,8 @@ protected:
     vector<int> tailX, tailY;
     enum Direction { left, right, up, down };
     Direction direction;
-    const int width = 80;
-    const int height = 20;
+    const int width = 30;
+    const int height = 10;
     bool gameOver;
     int gameSpeed;
     int x, y;

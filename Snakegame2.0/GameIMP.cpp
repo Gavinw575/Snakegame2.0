@@ -3,7 +3,6 @@
 void SnakeGame::initVariables()
 {
     this->window = nullptr;
-
 }
 
 void SnakeGame::initWindow()
@@ -206,7 +205,6 @@ void SnakeGame::pollEvents()
         switch (this->ev.type)
         {
 
-
         case Event::Closed:
             this->window->close();
             break;
@@ -231,8 +229,6 @@ void SnakeGame::pollEvents()
             break;
 
         }
-
-
 
     }
 
