@@ -1,26 +1,21 @@
 #include "Game.h"
 
 int main() {
+	// Creating an initialization of the game
+	SnakeGame game(1);
 
-    srand(time(nullptr));
+	// Initializing the game window
+	game.initWindow();
 
-    // Create an instance of SnakeGame
-    SnakeGame game(100); // Adjust difficulty here
+	// Game loop
+	while (game.running())
+	{
+		// Updates game state
+		game.Update();
 
-    // Initialize SFML window
-    game.initWindow();
+		// displays the game
+		game.Render();
+	}
 
-    // Game loop
-    while (game.running())
-    {
-        // Update game state
-        game.Update();
-
-        // Render game
-        game.Render();
-    }
-
-    return 0;
-
-    return 0;
+	return 0;
 }
