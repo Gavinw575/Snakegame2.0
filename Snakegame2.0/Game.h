@@ -1,10 +1,6 @@
 #pragma once
-#define NOMINMAX
 #include <iostream>
-#include <windows.h>
-#include <conio.h>
 #include <vector>
-#include <string>
 #include <SFML/Graphics.hpp>
 
 using namespace sf;
@@ -16,7 +12,6 @@ protected:
 	RenderWindow* window;
 	VideoMode videoMode;
 	Event ev;
-	bool gameOverDisplayed;
 
 	int SnakeX, SnakeY;
 	int fruitX, fruitY;

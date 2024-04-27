@@ -2,7 +2,7 @@
 
 SnakeGame::SnakeGame(int diff)
 {
-	bool gameOverDisplayed = false;
+	//bool gameOverDisplayed = false;
 	this->initVariables();
 	this->initWindow();
 	score = 0;
@@ -38,7 +38,6 @@ const bool SnakeGame::running() const
 
 bool SnakeGame::checkCollision(int x, int y)
 {
-	// Check if the given position (x, y) overlaps with any obstacle
 	for (const auto& obstacle : obstacles)
 	{
 		if (x == obstacle.first && y == obstacle.second)
@@ -47,19 +46,20 @@ bool SnakeGame::checkCollision(int x, int y)
 		}
 	}
 
-	for (size_t i = 0; i < tailX.size(); i++) {
+	for (size_t i = 0; i < tailX.size(); i++)
+	{
 		if (x == tailX[i] && y == tailY[i])
 		{
-			return true; // Collision detected
+			return true;
 		}
 	}
-	// Border to make sure the snake cant escape
+	// Border to make sure the snake cant escape (he sneaky)
 	if (SnakeX < 0 || SnakeY < 0 || SnakeX >= width + 1 || SnakeY >= height + 1)
 	{
 		return true;
 	}
 
-	return false; // No collision detected
+	return false;
 }
 
 void SnakeGame::SnakeState()
@@ -147,14 +147,10 @@ void SnakeGame::Fruit_ObsticalDevlopment()
 
 void SnakeGame::displayGameOverScreen()
 {
-	if (!gameOverDisplayed)
-	{
-		this->window->close();
-		cout << "Game Over! x_x" << endl;
-		cout << "Score: " << score << endl;
-		cout << "Obstacles Avoided: " << obstacleCount << endl;
-		gameOverDisplayed = true;
-	}
+	this->window->close();
+	cout << "Game Over! x_x" << endl;
+	cout << "Score: " << score << endl;
+	cout << "Obstacles Avoided: " << obstacleCount << endl;
 }
 
 void SnakeGame::KeyPress()
@@ -170,19 +166,19 @@ void SnakeGame::KeyPress()
 			switch (this->ev.key.code)
 			{
 			case Keyboard::A:
-				if (direction != right) // Prevent reverse to right
+				if (direction != right)
 					direction = left;
 				break;
 			case Keyboard::D:
-				if (direction != left) // Prevent reverse to left
+				if (direction != left)
 					direction = right;
 				break;
 			case Keyboard::W:
-				if (direction != down) // Prevent reverse to down
+				if (direction != down)
 					direction = up;
 				break;
 			case Keyboard::S:
-				if (direction != up) // Prevent reverse to up
+				if (direction != up)
 					direction = down;
 				break;
 			}
@@ -199,20 +195,19 @@ void SnakeGame::KeyPress()
 void SnakeGame::GameSpeed()
 {
 	// Limit snake movement speed by only updating its position if enough time has passed
-
 	static Clock clock;
 	Time elapsed = clock.getElapsedTime(); // Get elapsed time without restarting the clock
 
 	// Convert elapsed time to seconds
 	double elapsedSeconds = elapsed.asSeconds();
 
-	// Define the desired interval (e.g., 0.1 seconds)
+	// Defining the desired game speed ( 0.09 seconds)
 	double updateInterval = 0.09f;
 
 	if (elapsedSeconds >= updateInterval)
 	{
-		KeyPress(); // Handle SFML events (e.g., window closing)
-		SnakeState(); // Update game state (e.g., snake movement, score)
+		KeyPress();
+		SnakeState();
 		clock.restart();
 	}
 }
@@ -236,13 +231,12 @@ void SnakeGame::Render()
 {
 	//Resets the window so there is no mix up
 	this->window->clear(Color::White);
+
 	//A loop to make sure everything is operating while the game is still going
 	if (!gameOver)
 	{
 		ProcessSnakeDevelopment();
 		Fruit_ObsticalDevlopment();
 	}
-	else
-		displayGameOverScreen();
 	this->window->display();
 }
