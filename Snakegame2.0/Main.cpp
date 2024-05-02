@@ -1,19 +1,18 @@
 #include "Game.h"
 
 int main() {
-	// Creating an initialization of the game
+	//Creates an instance of the game
 	SnakeGame game(1);
 
-	// Initializing the game window
+	//Initlizes the game window
 	game.initWindow();
 
-	// Game loop
+	//Game loop that runs our functions
 	while (game.running())
 	{
-		// Updates game state
+		//Updates the game state
 		game.Update();
 
-		// displays the game
 		game.Render();
 	}
 
